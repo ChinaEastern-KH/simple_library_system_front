@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login.vue'
-import Home from '@/views/Home.vue'
+import Layout from '@/views/Layout.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import BookList from '@/views/BookList.vue'
 
 const routes = [
   {
@@ -11,9 +13,22 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Home',
-    component: Home,
-    meta: { title: '首页' }
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+        meta: { title: '首页' }
+      },
+      {
+        path: '/books',
+        name: 'BookList',
+        component: BookList,
+        meta: { title: '图书查询' }
+      }
+    ]
   }
 ]
 
