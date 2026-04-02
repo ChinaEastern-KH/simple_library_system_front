@@ -25,7 +25,7 @@
             router
             class="menu"
           >
-            <el-menu-item index="/">
+            <el-menu-item index="/dashboard">
               <el-icon><HomeFilled /></el-icon>
               <span>首页</span>
             </el-menu-item>
@@ -35,9 +35,9 @@
               <span>图书查询</span>
             </el-menu-item>
 
-            <el-menu-item index="/borrow" disabled>
+            <el-menu-item index="/borrow-record">
               <el-icon><Document /></el-icon>
-              <span>借阅管理</span>
+              <span>借阅记录</span>
             </el-menu-item>
 
             <el-menu-item index="/password" disabled>
@@ -48,6 +48,17 @@
             <!-- 管理员菜单 -->
             <template v-if="isAdmin">
               <el-divider />
+
+              <el-menu-item index="/admin/book-manage">
+                <el-icon><Reading /></el-icon>
+                <span>图书管理</span>
+              </el-menu-item>
+
+              <el-menu-item index="/admin/borrow-manage">
+                <el-icon><Document /></el-icon>
+                <span>借阅管理</span>
+              </el-menu-item>
+
               <el-menu-item index="/admin/users" disabled>
                 <el-icon><User /></el-icon>
                 <span>用户管理</span>

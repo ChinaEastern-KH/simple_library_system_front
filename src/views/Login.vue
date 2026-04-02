@@ -112,10 +112,11 @@ const handleLogin = async () => {
         const response = await login(loginForm)
 
         if (response.status === 200 && response.data.token) {
-          // 保存 token 到 localStorage
+          // 保存 token 和用户信息到 localStorage
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('username', loginForm.username)
           localStorage.setItem('isadmin', loginForm.isadmin)
+          localStorage.setItem('userid', response.data.userid)
 
           ElMessage.success('登录成功')
 

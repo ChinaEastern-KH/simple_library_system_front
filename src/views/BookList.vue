@@ -128,6 +128,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Refresh } from '@element-plus/icons-vue'
 import { queryBooksByPage } from '@/api/book'
 import { readerQueryAllBookTypes } from '@/api/bookType'
+import { readerBorrowBook } from '@/api/borrow'
 
 // 搜索表单
 const searchForm = reactive({
@@ -232,11 +233,30 @@ const handleBorrow = async (row) => {
       }
     )
 
-    // TODO: 调用借阅接口
-    ElMessage.info('借阅功能开发中...')
+    // 获取用户ID
+    const userid = localStorage.getItem('userid')
+    if (!userid) {
+      ElMessage.error('请先登录')
+      return
+    }
+
+    // 调用借阅接口
+    const result = await readerBorrowBook({
+      userid: parseInt(userid),
+      bookid: row.bookid
+    })
+
+    if (result === 1) {
+      ElMessage.success('借阅成功')
+      // 刷新列表
+      loadBookList()
+    } else {
+      ElMessage.error('借阅失败，该图书可能已被借出')
+    }
   } catch (error) {
     if (error !== 'cancel') {
       console.error('借阅失败:', error)
+      ElMessage.error('借阅失败')
     }
   }
 }

@@ -27,10 +27,9 @@
               </div>
             </el-col>
             <el-col :span="6">
-              <div class="quick-link disabled">
-                <el-icon :size="40" color="#909399"><Document /></el-icon>
-                <p>借阅管理</p>
-                <el-tag size="small" type="info">开发中</el-tag>
+              <div class="quick-link" @click="goTo('/borrow-record')">
+                <el-icon :size="40" color="#67C23A"><Document /></el-icon>
+                <p>借阅记录</p>
               </div>
             </el-col>
             <el-col :span="6">
@@ -41,10 +40,15 @@
               </div>
             </el-col>
             <el-col :span="6" v-if="isAdmin">
-              <div class="quick-link disabled">
-                <el-icon :size="40" color="#909399"><User /></el-icon>
-                <p>用户管理</p>
-                <el-tag size="small" type="info">开发中</el-tag>
+              <div class="quick-link" @click="goTo('/admin/book-manage')">
+                <el-icon :size="40" color="#E6A23C"><Reading /></el-icon>
+                <p>图书管理</p>
+              </div>
+            </el-col>
+            <el-col :span="6" v-if="isAdmin">
+              <div class="quick-link" @click="goTo('/admin/borrow-manage')">
+                <el-icon :size="40" color="#F56C6C"><Document /></el-icon>
+                <p>借阅管理</p>
               </div>
             </el-col>
           </el-row>
